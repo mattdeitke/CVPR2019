@@ -19,7 +19,7 @@ for i, pid in enumerate(paperids):
 	# get the abstract text from the html
 	abstract = requests.get(url).text
 	abstract = abstract[abstract.find('id="abstract"'):]
-	abstract = abstract[abstract.find('>') + 1:abstract.find('<')].strip()
+	abstract = abstract[abstract.find('>') + 1:abstract.find('</div')].strip()
 
 	# checks for empty abstract
 	# (often arises if link 404s)
