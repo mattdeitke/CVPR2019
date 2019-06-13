@@ -10,27 +10,28 @@ stopwords = open("stopwords.txt", "r").read().split()
 stopwords = [x.strip(punctuation) for x in stopwords if len(x)>2]
 
 # get list of all PDFs supplied by NIPS
-relpath = "nips25offline/content/"
+relpath = "content/"
 allFiles = os.listdir(relpath)
 pdfs = [x for x in allFiles if x.endswith(".pdf")]
 
 # go over every PDF, use pdftotext to get all words, discard boring ones, and count frequencies
 outf = open("allpapers.txt", "w")
 for i,f in enumerate(pdfs):
-	paperid = f[9:-4]
+	paperid = f[:-20]
 	fullpath = relpath + f
 
-	print "processing %s, %d/%d" % (paperid, i, len(pdfs))
+	print("processing %s, %d/%d" % (paperid, i, len(pdfs)))
 
 	# create text file
 	cmd = "pdftotext %s %s" % (fullpath, "out.txt")
-	print "EXEC: " + cmd
+	print("EXEC: " + cmd)
 	os.system(cmd)
 
-	txtlst = open("out.txt").read().split() # get all words in a giant list
+	txtlst = open('out.txt', 'r', errors='ignore').read().split() # get all words in a giant list
 	words = [x.lower() for x in txtlst if re.match('^[\w-]+$', x) is not None] # take only alphanumerics
 	words = [x for x in words if len(x)>2 and (not x in stopwords)] # remove stop words
 
+	# count up frequencies of common words
 	wcount = {} 
 	for w in words: wcount[w] = wcount.get(w, 0) + 1
 	words = [x for x in words if wcount[x] >= 3] # only take words that occurr at least a bit (for efficiency)
