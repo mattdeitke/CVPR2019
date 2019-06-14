@@ -1,74 +1,48 @@
-# scrape the NIPS25.html file looking for authors names, titles
+# scrape the cvpr2019oar.html file looking for authors names, titles, and bib
 # and create a database of all papers. This is necessary because
-# extracting the authors and titles from PDFs directly is tricky.
+# extracting the authors, titles, and bib from PDFs directly is tricky.
 
-from HTMLParser import HTMLParser
-import cPickle as pickle
+import pickle
 
-class Paper:
-	def __init__(self):
-		self.paper = "" # the id of the paper
-		self.title = "" # the title of the paper
-		self.authors = "" # the author list of the paper
-
-# create a subclass of HTMLParser and override handler methods
-# this is an event-driven parser so we maintain a state etc.
-# this is super hacky and tuned to the specifics of the .html 
-# page provided by NIPS.
-class MyHTMLParser(HTMLParser):
-	def __init__(self):
-		HTMLParser.__init__(self)
-		self.firstPaperEncountered = False
-		self.curPaper = Paper()
-		self.allPapers = []
-
-	def handle_starttag(self, tag, attrs):
-		if not tag == 'a': return
-
-		# attrs is a list of (key, value) pairs
-		for k,v in attrs:
-			if k == 'name':
-				print "New paper: " + v
-				
-				if self.firstPaperEncountered:
-					# push current paper to stack
-					self.allPapers.append(self.curPaper) 
-
-				# this signals new paper being read
-				self.curPaper = Paper() # start a new paper
-				self.curPaper.paper = v[1:] # for some reason first character is P, then follows the 4-digit ID
-				self.firstPaperEncountered = True
-
-	def handle_endtag(self, tag):
-		if not self.firstPaperEncountered: return
-
-	def handle_data(self, data):
-		if not self.firstPaperEncountered: return
-
-		# there are many garbage data newlines, get rid of it
-		s = data.strip()
-		if len(s) == 0: return
-
-		# title is first data encountered, then authors
-		if self.curPaper.title == "": 
-			self.curPaper.title = data
-			print 'title ' + data
-			return
-
-		if self.curPaper.authors == "": 
-			self.curPaper.authors = data
-			print 'authors ' + data
-			return
-
-
-parser = MyHTMLParser()
-f = open('nips25offline/nips25.html').read()
-parser.feed(f)
-
+# html = open('cvpr2019oar.html').read()
+html = open('OAR2.html').read()
 outdict = {}
-for p in parser.allPapers:
-	outdict[p.paper] = (p.title, p.authors)
+
+while html.find('class="bibref"') != -1:
+	# defining id as the pdf url to remain consistent with other sections
+	# also removing '_CVPR_2019_paper.pdf' from each id
+	paperid = html[:html.find('class="bibref"')]
+
+	# checks for supplemental material
+	# empty string if no supp, url to supp if there is supp
+	supp = ''
+	if 'supplemental' in paperid[paperid.rfind('paper.pdf'):]:
+		supp = paperid[paperid.rfind('paper.pdf'):]
+		supp = supp[supp.find('href'):]
+		supp = supp[supp.find('"') + 1:supp.find('.pdf') + 4]
+
+	paperid = paperid[:paperid.rfind('paper.pdf')]
+	paperid = paperid[paperid.rfind('/')+1:-11]
+
+	# used to get each of the titles and authors of the text
+	bib = html[html.find('class="bibref"'):]
+	bib = bib[bib.find('>') + 1:bib.find('</div>')].strip() \
+												   .replace('\n', '\n&nbsp;&nbsp;') \
+												   .replace('&nbsp;&nbsp;}', '}')
+
+	# find the authors name and format with 'first last, first last, ...'
+	authors = bib[bib.find('author'):]
+	authors = authors[authors.find('{')+1:authors.find('}')].split(' and ')
+	authors = ', '.join([n[n.find(', ')+2:] + ' ' + n[:n.find(',')] for n in authors])
+
+	# title from bibtex
+	title = bib[bib.find('title'):]
+	title = title[title.find('{')+1:title.find('}')].strip()
+
+	# save each entry into a dictionary
+	outdict[paperid] = (title, authors, bib, supp)
+
+	html = html[html.find('class="bibref"') + 1:]
 
 # dump a dictionary indexed by paper id that points to (title, authors) tuple
 pickle.dump(outdict, open("papers.p", "wb"))
-
