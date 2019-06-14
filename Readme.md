@@ -1,6 +1,6 @@
 # CVPR 2019 Accepted Papers
 
-The main goal of these scripts is to build a page that displaying the accepted papers for CVPR 2019 in a way that is easier for humans to parse (re: https://mattdeitke.github.io/CVPR2019 ). Below is an example of what this repository will display and following that is what CVPR open access currently displays.
+The main goal of these scripts is to build a page that displaying the accepted papers for CVPR 2019 in a way that is easier for humans to parse (re: https://mattdeitke.github.io/CVPR-2019 ). Below is an example of what this repository will display and following that is what CVPR open access currently displays.
 
 <img src="site.gif" style="width:100%"/>
 <div style="text-align:center">
@@ -10,7 +10,7 @@ In particular, there is functionality to cluster papers based on latent Dirichle
 
 #### Installation
 
-0. Clone this repository `git clone https://github.com/mattdeitke/CVPR-2019`
+0. Clone this repository `git clone https://github.com/mattdeitke/CVPR2019`
 
 1. Save the HTML from where the accepted papers are displayed. For CVPR, this year, that would be `http://openaccess.thecvf.com/CVPR2019.py`.
 
