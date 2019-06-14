@@ -1,0 +1,524 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2019 CVPR Accepted Papers</title>
+
+<style>
+/* CSS */
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'arial';
+	background-color: #e2e1e8;
+}
+.as {
+	font-size: 12px;
+	color: #4b2e84;
+}
+.ts {
+	font-weight: bold;
+	font-size: 14px;
+}
+.tt {
+	color: #009;
+	font-size: 13px;
+}
+h1 {
+	font-size: 20px;
+	padding: 0;
+	margin: 0;
+}
+
+.copied {
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+	background-color: #4b2e84;
+	color: white;
+	padding: 8px 12px;
+	border-radius: 3px;
+	font-size: 14px;
+}
+
+#titdiv {
+	width: 100%;
+	height: 95px;
+	background-color: #4b2e84;
+	color: #f3f3f6;
+	padding-top: 15px;
+	border-bottom: 1px solid #540000;
+	text-align: center;
+	line-height: 18px;
+}
+
+#titdiv div {
+	font-size: 12px;
+}
+
+#titdiv div,
+#titdiv a:link, 
+#titdiv a:visited {
+	color: rgba(255, 255, 255, 0.5);
+}
+
+#nf {
+	margin-top: 7px;
+}
+
+#maindiv {
+	width: 970px;
+	margin-left: auto;
+	margin-right: auto;
+	border-left: solid 1px #D6D3C5;
+	border-right: solid 1px #D6D3C5;
+	background-color: white;
+}
+
+#rtable {
+	background-color: #f6f6f6;
+}
+
+.apaper {
+	margin-top: 10px;
+	padding: 15px;
+	background-color: white;
+}
+
+.apaper img {
+	width: 940px;
+}
+
+.paperdesc {
+	width: 100%;
+	text-align: center;
+}
+
+.dllinks {
+	width: 100%;
+	text-align: center;
+	margin-top: -13px;
+	padding-bottom: 9px;
+	font-size: 12px;
+}
+
+.dllinks, .apaper img, .image_link {
+	/* don't make text or image selectable */
+	-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.dllinks a, .dllinks span {
+	text-decoration: underline;
+	color: #666;
+}
+
+.dllinks a:hover, .dllinks span:hover {
+	cursor: pointer;
+}
+
+#maindiv a:link{ color: #666; }
+#maindiv a:visited{ color: #666; }
+
+.t0 { color: #000;}
+.t1 { color: #C00;}
+.t2 { color: #0C0;}
+.t3 { color: #00C;}
+.t4 { color: #AA0;}
+.t5 { color: #C0C;}
+.t6 { color: #0CC;}
+
+.topicchoice {
+	border: 2px solid black;
+	border-radius: 5px;
+	padding: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+#explanation {
+	background-color: #e5d9ff;
+	border-radius: 5px;
+	color: black;
+	padding: 5px;
+	text-align: center;
+	width: 940px;
+	margin: auto;
+	margin-bottom: 5px;
+}
+
+#maindiv {
+	padding-top: 15px;
+}
+
+#sortoptions {
+	text-align: center;
+	padding: 10px;
+}
+
+.sim {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.abstr {
+	background-color: #f0e9ff;
+	font-size: 12px;
+	padding: 10px;
+	border-radius: 5px;
+	margin-bottom: 5px;
+	font-size: 13px;
+	font-family: 'times';
+}
+
+.bib, .topics {
+	/*display: none;*/
+	font-size: 13px;
+	font-family: 'times';
+	margin-top: 8px;
+	border-top: 1px solid rgba(0,0,0,0.05);
+	padding-top: 8px;
+}
+
+.bib {
+	display: none;
+}
+
+.abstrholder {
+	background-color: #DFD;
+	border: 1px solid #BDB;
+	font-size: 12px;
+	padding: 10px;
+	border-radius: 5px;
+	display: none; /* so that these are hidden initially */
+	margin-bottom: 5px;
+}
+
+#show {
+	text-align: center;
+	margin-top: 15px;
+}
+
+#showabstract, #showtopics, #showbibs {
+	padding: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	border-radius: 5px;
+	text-decoration: underline;
+}
+
+#showabstract, #showtopics {
+	background-color: rgb(241, 238, 255);
+	border: 2px solid rgb(103, 85, 119);
+}
+
+#showbibs {
+	/* just serves to maintain position on screen
+	will not display until pressed */
+	border: 2px solid rgba(255, 255, 255, 0);
+}
+
+#showabstract:hover,
+#showtopics:hover,
+#showbibs:hover,
+#showabstractSm:hover,
+#showtopicsSm:hover,
+#showbibsSm:hover {
+	cursor: pointer;
+}
+
+#smallTitle {
+	margin-left: 15px;
+	font-weight: bold;
+	margin-top: 6px;
+}
+
+#smHeader {
+	color: #f3f3f6;
+	background-color: rgb(75, 46, 132);
+	height: 35px;
+	width: 100%;
+	position: fixed;
+	top: 0px;
+	display: none;
+	font-family: 'arial';
+}
+
+#showSm {
+	text-align: center;
+	margin-top: -39px;
+}
+
+#showabstractSm,
+#showtopicsSm,
+#showbibsSm {
+	text-decoration: underline;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+#showabstractSm,
+#showtopicsSm { /* starts on */
+	color: #f3f3f6;
+}
+
+#showbibsSm { /* starts off */
+	color: rgba(255, 255, 255, 0.25);
+}
+
+</style>
+
+<script src="jquery-1.8.3.min.js"></script>
+<script>
+
+// this line below will get filled in with database of LDA topic distributions for top words 
+// for every paper
+LOADDISTS
+
+// this will be filled with pairwise scores between papers
+PAIRDISTS
+
+var choices = [0, 0, 0, 1, 1, 0, 0]; // default choices, random...
+var similarityMode = 0; // is the user currently looking at papers similar to some one paper?
+var similarTo = 0; // the index of query paper
+
+// given choices of topics to sort by, handle user interface stuff (i.e. show selection)
+function colorChoices() {
+	for(var i=0;i<choices.length;i++) {
+		if(choices[i] == 1) {
+			$("#tc"+i).css("background-color", "rgb(248, 246, 255)");
+			$("#tc"+i).css("border-color", "rgb(103, 85, 119)");
+		} else {
+			$("#tc"+i).css("background-color", "#FFF");
+			$("#tc"+i).css("border-color", "#FFF");
+		}
+	}
+}
+
+// this permutes the divs (that contian 1 paper each) based on a custom sorting function
+// in our case, this sort is done as dot product based on the choices[] array
+// here we are guaranteed ldadist[] already sums to 1 for every paper
+function arrangeDivs() {
+	var rtable = $("#rtable");
+	var paperdivs = rtable.children(".apaper");
+
+	// normalize choices to sum to 1
+	var nn = choices.slice(0); // copy the array
+	var ss = 0.0;
+	for(var j=0;j<choices.length;j++) { ss += choices[j]; }
+	for(var j=0;j<choices.length;j++) { nn[j] = nn[j]/ss; }
+
+	paperdivs.detach().sort(function(a,b) {
+		var ixa = parseInt($(a).attr('id').substring(3));
+		var ixb = parseInt($(b).attr('id').substring(3));
+
+		if(similarityMode === 1) {
+			return pairdists[ixa][similarTo] < pairdists[ixb][similarTo] ? 1 : -1;
+		}
+
+		if(similarityMode === 0) {
+
+			// chi-squared kernel for the two histograms
+			var accuma = 0;
+			var accumb = 0;
+			for(var i=0;i<7;i++) {
+				var ai= ldadist[ixa][i];
+				var bi= ldadist[ixb][i];
+				var ci= choices[i];
+				accuma += (ai-ci)*(ai-ci)/(ai+ci);
+				accumb += (bi-ci)*(bi-ci)/(bi+ci);
+			}		
+			return accuma > accumb ? 1 : -1;
+		}
+
+	});
+	rtable.append(paperdivs);
+}
+
+// when page loads...
+$(document).ready(function(){
+	
+	arrangeDivs();
+	colorChoices();
+
+	// user clicks on one of the Topic buttons
+	$(".topicchoice").click(function() {
+		similarityMode = 0; // make sure this is off
+		var tcid = parseInt($(this).attr('id').substring(2));
+		choices[tcid] = 1 - choices[tcid]; // toggle!
+		
+		colorChoices();
+		arrangeDivs();
+	});
+
+	// user clicks on "rank by tf-idf similarity to this" button for some paper
+	$(".sim").click(function() {
+		similarityMode = 1; // turn on similarity mode
+		for(var i=0;i<choices.length;i++) { choices[i] = 0; } // zero out choices
+		similarTo = parseInt($(this).attr('id').substring(3)); // store id of the paper clicked
+
+		colorChoices();
+		arrangeDivs();
+
+		// also scroll to top
+		$('html, body').animate({ scrollTop: 0 }, 'fast');
+	});
+
+	// user clicks on "abstract button for some paper
+	$(".absclick").click(function() {
+		var pid = parseInt($(this).attr('id').substring(7)); // id of the paper clicked
+		var holderdiv = "#abdis" + pid;
+
+		if($(holderdiv).is(':visible')) {
+
+			$(holderdiv).slideUp(); // hide the abstract away
+
+		} else {
+			
+			$(holderdiv).slideDown();
+		}
+	});
+
+	$(".ldaclick").click(function() {
+		var pid = parseInt($(this).attr('id').substring(8)); // id of the paper clicked
+		var holderdiv = "#todis" + pid;
+
+		if($(holderdiv).is(':visible')) {
+
+			$(holderdiv).slideUp(); // hide the abstract away
+
+		} else {
+			
+			$(holderdiv).slideDown();
+		}
+	});
+
+	var to;
+
+	// copy bibtex pressed
+	$(".copybib").click(function() {
+		if ($('.copied').length) {
+			clearTimeout(to);
+			$('.copied').remove();
+		}
+		var pid = parseInt($(this).attr('id').substring(8)); // id of the paper clicked
+		var promise = navigator.clipboard.writeText($("#bibdis" + pid).text())
+		$(promise).select();
+		document.execCommand("copy");
+		$("body").prepend("<span class='copied'>copied to clipboard!</span");
+		$(".copied").delay( 800 ).fadeOut(1000);
+		to = setTimeout(function() {
+			$('.copied').remove();
+		}, 2000);
+	});
+
+	function show_each(showid, showclass, smallid) {
+		$("#" + showid + ", #" + smallid).click(function() {
+			if ($("." + showclass).css("display") === "none") {
+				// $("." + showclass).slideDown();
+				$("." + showclass).css("display", "block");
+				$("#" + showid).css("background-color", 'rgb(241, 238, 255)');
+				$("#" + showid).css("border", '2px solid rgb(103, 85, 119)');
+				$("#" + smallid).css("color", "#f3f3f6");
+			}
+			else {
+				$("." + showclass).css("display", "none");
+				// $("." + showclass).slideUp();
+				$("#" + showid).css("background-color", 'rgba(255,255,255,0)');
+				$("#" + showid).css("border", '2px solid rgba(255, 255, 255, 0)');
+				$("#" + smallid).css("color", "rgba(255, 255, 255, 0.25)");
+			}
+		});
+	}
+
+	show_each('showabstract', 'abstr', 'showabstractSm');
+	show_each('showtopics', 'topics', 'showtopicsSm');
+	show_each('showbibs', 'bib', 'showbibsSm');
+
+	$(window).scroll( function() {
+		var top = $(this).scrollTop();
+		if (top > 600) {
+			$("#smheader").slideDown(150);
+		}
+		else if (top <= 600) {
+			$("#smheader").slideUp(150);
+		}
+		// if statement to do changes
+	});
+
+});
+
+
+
+</script>
+
+</head>
+
+<body>
+
+<!-- Header that shows when the user scrolls down -->
+<div id="smheader">
+	<h3 id="smallTitle">2019 CVPR Accepted Papers</h3>
+	<!-- GitHub icon for small header -->
+	<a href="https://github.com/mattdeitke/CVPR-2019" aria-label="View source on GitHub" target="_blank"><svg width="35" height="35" viewBox="0 0 250 250" style="fill:#fff; color:#4b2e84; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+	<div id="showSm">
+		Show each:
+		<span class="showchoice" id="showabstractSm">abstract</span>
+		<span class="showchoice" id="showtopicsSm">LDA topics</span>
+		<span class="showchoice" id="showbibsSm">bibtex</span>
+	</div>
+</div>
+
+<!-- Main header at the top of the page -->
+<div id ="titdiv">
+	<h1>2019 CVPR Accepted Papers</h1>
+	<div id="nf">Maintained by <a href="https://mattdeitke.github.io/" target="_blank">Matt Deitke</a></div>
+	<div>Adapted from <a href="https://twitter.com/karpathy/" target="_blank">Andrej Karpathy</a></div>
+	<div>(data from <a href="http://openaccess.thecvf.com/CVPR2019.py" target="_blank">here</a>)</div>
+</div>
+
+<!-- GitHub icon for large header -->
+<a href="https://github.com/mattdeitke/CVPR-2019" aria-label="View source on GitHub" target="_blank"><svg width="110" height="110" viewBox="0 0 250 250" style="fill:#fff; color:#4b2e84; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+<div id="maindiv">
+<div id="explanation">Below every paper are TOP 100 most-occuring words in that paper and their color is based on LDA topic model with k = 7.<br />
+	<div style="font-size: 12px;">(It looks like 0 = videos, 1 = geometry, 2 = image processing, 3 = neural network pruning, 4 = captioning, 5 = segmentation, 6 = unsupervised learning) </div>
+</div>
+<div id="sortoptions">
+	Toggle LDA topics to sort by:
+	<span class="topicchoice t0" id="tc0">TOPIC0</span>
+	<span class="topicchoice t1" id="tc1">TOPIC1</span>
+	<span class="topicchoice t2" id="tc2">TOPIC2</span>
+	<span class="topicchoice t3" id="tc3">TOPIC3</span>
+	<span class="topicchoice t4" id="tc4">TOPIC4</span>
+	<span class="topicchoice t5" id="tc5">TOPIC5</span>
+	<span class="topicchoice t6" id="tc6">TOPIC6</span>
+</div>
+
+<div id="show">
+	Show each:
+	<span class="showchoice" id="showabstract">abstract</span>
+	<span class="showchoice" id="showtopics">LDA topics</span>
+	<span class="showchoice" id="showbibs">bibtex</span>
+</div>
+
+
+<!-- the keyword below will be replaced by content from the python script generatenice.py -->
+<div id="rtable">
+RESULTTABLE
+</div>
+
+</div>
+
+<br /><br /><br /><br /><br /><br />
+</body>
+
+</html>
