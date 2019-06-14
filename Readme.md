@@ -24,7 +24,7 @@ In particular, there is functionality to cluster papers based on latent Dirichle
 
 6. Run `makecorpus.py` (to create allpapers.txt file that has all papers one per row)
 
-7. Run `python lda.py -f allpapers.txt -k 7 --alpha=0.5 --beta=0.5 -i 100` . This will generate a pickle file called `ldaphi.p` that contains the LDA word distribution matrix. Thanks to this [nice LDA code](https://github.com/shuyo/iir/blob/master/lda/lda.py) by @shuyo! It requires nltk library and numpy. In this example we are using 7 categories. You would need to change the `nipsnice_template.html` file a bit if you wanted to try different number of categories.
+7. Run `python lda.py -f allpapers.txt -k 7 --alpha=0.5 --beta=0.5 -i 100` . This will generate a pickle file called `ldaphi.p` that contains the LDA word distribution matrix. Thanks to this [nice LDA code](https://github.com/shuyo/iir/blob/master/lda/lda.py) by [@shuyo](https://github.com/shuyo)! It requires nltk library and numpy. In this example we are using 7 categories. You would need to change the `nipsnice_template.html` file a bit if you wanted to try different number of categories.
 
 8. Generate the abstract files inside abstracts/ folder using `getabstracts.py`.
 
@@ -32,7 +32,7 @@ In particular, there is functionality to cluster papers based on latent Dirichle
 
 ### Acknowledgements
 
-Big thanks to @karpathy for his [NeurIPS preview](https://github.com/karpathy/nipspreview) and [ArXiV Sanity Preserver](https://github.com/karpathy/arxiv-sanity-preserver), which is what this repository is built on top of! Also a thanks to @tholman for creating a more modern [GitHub Corners](https://github.com/tholman/github-corners) and @shuyo for the [LDA code](https://github.com/shuyo/iir/blob/master/lda/lda.py)! Finally, more thanks go to the people at CVPR for [openly publishing all of their accepted papers](http://openaccess.thecvf.com/CVPR2019.py)!
+Big thanks to [@karpathy](https://github.com/karpathy) for his [NeurIPS preview](https://github.com/karpathy/nipspreview) and [ArXiV Sanity Preserver](https://github.com/karpathy/arxiv-sanity-preserver), which is what this repository is built on top of! Also a thanks to [@tholman](https://github.com/tholman) for creating a more modern [GitHub Corners](https://github.com/tholman/github-corners) and [@shuyo](https://github.com/shuyo) for the [LDA code](https://github.com/shuyo/iir/blob/master/lda/lda.py)! Finally, more thanks go to the people at CVPR for [openly publishing all of their accepted papers](http://openaccess.thecvf.com/CVPR2019.py)!
 
 #### Licence
 
