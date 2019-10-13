@@ -4,8 +4,7 @@
 
 import pickle
 
-# html = open('cvpr2019oar.html').read()
-html = open('OAR2.html').read()
+html = open('cvpr2019oar.html').read()
 outdict = {}
 
 while html.find('class="bibref"') != -1:
