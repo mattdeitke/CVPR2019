@@ -1,3 +1,7 @@
+**Updated repository at https://github.com/mattdeitke/CVPR-Accepted-Papers-Viewer**
+
+---
+
 # CVPR 2019 Accepted Papers
 
 The main goal of these scripts is to build a page that displays the accepted papers for CVPR 2019 in a way that is easier for humans to parse (see: https://mattdeitke.com/CVPR-2019). Below is an example of what this repository will display, and following that is what CVPR open access currently shows.
